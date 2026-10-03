@@ -1,5 +1,8 @@
 package ru.vsu.autoservice.model;
 
+/**
+ * Содержит возможные статусы заказа на ремонт.
+ */
 public enum OrderStatus {
     ACCEPTED,
     DIAGNOSTICS,
@@ -9,8 +12,14 @@ public enum OrderStatus {
     ISSUED,
     CANCELLED;
 
+    /**
+     * Проверяет, разрешён ли переход из текущего статуса в указанный.
+     *
+     * @param nextStatus следующий статус
+     * @return true, если переход разрешён
+     */
     public boolean canTransitionTo(OrderStatus nextStatus) {
-        if (nextStatus == null) {
+        if (nextStatus == null || this == nextStatus) {
             return false;
         }
 
